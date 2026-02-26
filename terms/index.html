@@ -6,13 +6,21 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../../assets/css/legal.css">
+  <link rel="stylesheet" href="../assets/css/legal.css">
   <title>TiLingo Terms of Use</title>
 </head>
 <body>
+  <script>
+    (function () {
+      var params = new URLSearchParams(window.location.search);
+      if (params.get("embedded") === "1") {
+        document.body.classList.add("is-embedded");
+      }
+    })();
+  </script>
   <div class="wrap">
     <nav class="top-nav" aria-label="Back navigation">
-      <a class="back-link" href="../../index.html">Back to Home</a>
+      <a class="back-link" href="../index.html">Back to Home</a>
     </nav>
 
     <header>

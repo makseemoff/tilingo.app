@@ -86,6 +86,10 @@ a {
   margin-bottom: 16px;
 }
 
+body.is-embedded .top-nav {
+  display: none;
+}
+
 .back-link {
   display: inline-flex;
   align-items: center;
