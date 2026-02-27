@@ -7,11 +7,25 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/home.css">
+  <script src="assets/js/menu.js" defer></script>
   <title>TiLingo</title>
 </head>
 <body>
   <div class="stage">
     <main class="hero-card">
+      <div class="site-menu" data-menu>
+        <button class="menu-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="home-menu-panel">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+        <nav class="menu-panel" id="home-menu-panel" aria-label="Site menu" hidden>
+          <a href="support/index.html">Support</a>
+          <a href="privacy/index.html">Privacy-Policy</a>
+          <a href="terms/index.html">Term of Use</a>
+        </nav>
+      </div>
+
       <header class="hero-copy">
         <h1>TiLingo</h1>
         <h2>Creating <em>flashcards</em> just got easier!</h2>
@@ -20,11 +34,6 @@
       <div class="bottom-banner">
         <img src="assets/images/tilingo_banner.png" alt="TiLingo app preview">
       </div>
-
-      <footer class="legal-links" aria-label="Legal links">
-        <a href="privacy/index.html">Privacy Policy</a>
-        <a href="terms/index.html">Terms of Use</a>
-      </footer>
     </main>
 
     <div class="coming-strip" aria-hidden="true">
