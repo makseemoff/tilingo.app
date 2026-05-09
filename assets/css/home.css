@@ -3,7 +3,7 @@
   --page-bg: #ffffff;
   --hero-bg: #8dd541;
   --white: #ffffff;
-  --strip-text: #364148;
+  --soft-white: #f4f8ef;
   --menu-text: #1f2f36;
   --menu-hover: #eaf0f3;
 }
@@ -12,26 +12,35 @@
   box-sizing: border-box;
 }
 
+html {
+  background: var(--page-bg);
+}
+
 body {
   margin: 0;
-  min-height: 100dvh;
+  height: 100vh;
   background: var(--page-bg);
   font-family: "Nunito", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  overflow: hidden;
 }
 
 .stage {
   position: relative;
-  min-height: 100dvh;
+  height: 100vh;
   padding: 32px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  display: grid;
+  justify-items: center;
 }
 
 .hero-card {
   position: relative;
+  z-index: 1;
   width: min(1840px, calc(100vw - 64px));
-  min-height: calc(100dvh - 64px);
+  max-width: 1840px;
+  height: calc(100vh - 64px);
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
   background: var(--hero-bg);
   border-radius: 44px;
   overflow: hidden;
@@ -39,9 +48,9 @@ body {
 
 .site-menu {
   position: absolute;
-  top: 28px;
-  right: 30px;
-  z-index: 9;
+  top: 60px;
+  right: 62px;
+  z-index: 100;
 }
 
 .menu-toggle {
@@ -116,24 +125,26 @@ body {
 .hero-copy {
   position: relative;
   z-index: 4;
+  max-width: 880px;
+  margin: 0 auto;
+  padding: clamp(46px, 7.6vh, 88px) 24px clamp(16px, 2.8vh, 28px);
   text-align: center;
-  padding: calc(clamp(56px, 9vh, 138px) + 40px) 24px 0;
 }
 
 .hero-copy h1 {
   margin: 0;
   color: var(--white);
-  font-size: clamp(3rem, 5.6vw, 6.2rem);
+  font-size: clamp(4rem, 5.6vh, 5rem);
   font-weight: 800;
   line-height: 1.02;
 }
 
 .hero-copy h2 {
-  margin: clamp(16px, 1.6vw, 26px) 0 0;
-  color: #f4f8ef;
-  font-size: clamp(2rem, 3.4vw, 4.4rem);
+  margin: clamp(10px, 1.7vh, 18px) 0 0;
+  color: var(--soft-white);
+  font-size: clamp(2.25rem, 4.5vh, 3.15rem);
   font-weight: 700;
-  line-height: 1.14;
+  line-height: 1.08;
 }
 
 .hero-copy h2 em {
@@ -141,42 +152,47 @@ body {
   font-weight: 800;
 }
 
-.coming-strip {
-  position: absolute;
-  left: 50%;
-  top: calc(clamp(286px, 53%, 560px) - 78px);
-  width: 112vw;
-  height: clamp(34px, 2.7vw, 52px);
-  background: var(--white);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  pointer-events: none;
-  transform: rotate(-5deg);
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.18);
-  z-index: 6;
-  margin-left: -56vw;
+.availability {
+  margin: clamp(10px, 1.8vh, 18px) auto 0;
+  max-width: 43ch;
+  color: var(--soft-white);
+  font-size: clamp(1rem, 1.8vh, 1.18rem);
+  font-weight: 700;
+  line-height: 1.35;
 }
 
-.coming-strip p {
-  margin: 0;
-  width: 110%;
-  white-space: nowrap;
-  color: var(--strip-text);
-  font-size: clamp(0.95rem, 1.45vw, 1.8rem);
-  font-weight: 800;
-  line-height: 1;
-  letter-spacing: 0.02em;
-  text-align: center;
+.availability a {
+  color: var(--white);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 4px;
+}
+
+.availability a:hover {
+  opacity: 0.85;
+}
+
+.availability a:focus-visible {
+  outline: 3px solid rgba(255, 255, 255, 0.75);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+.appstore-badge {
+  display: inline-flex;
+  margin-top: clamp(10px, 1.8vh, 16px);
+}
+
+.appstore-badge img {
+  display: block;
+  height: clamp(42px, 5.8vh, 52px);
+  width: auto;
 }
 
 .bottom-banner {
-  position: fixed;
-  left: 50%;
-  bottom: 0;
-  transform: translateX(-50%);
-  width: min(1200px, 94%);
-  z-index: 3;
+  position: relative;
+  z-index: 2;
+  width: min(1120px, 94%, max(420px, calc((100vh - 336px) * 1.9608)));
+  margin: auto auto 0;
 }
 
 .bottom-banner img {
@@ -185,28 +201,79 @@ body {
   height: auto;
 }
 
+.mobile-showcase {
+  display: none;
+}
+
 @media (max-width: 1240px) {
-  .coming-strip {
-    top: calc(clamp(246px, 50%, 470px) - 78px);
-    width: 116vw;
-    margin-left: -58vw;
+  .hero-copy {
+    max-width: 760px;
+  }
+
+  .hero-copy h1 {
+    font-size: 4.35rem;
+  }
+
+  .hero-copy h2 {
+    font-size: 2.65rem;
+  }
+}
+
+@media (max-height: 820px) and (min-width: 901px) {
+  .hero-copy {
+    padding-top: 36px;
+    padding-bottom: 14px;
+  }
+
+  .hero-copy h1 {
+    font-size: 4rem;
+  }
+
+  .hero-copy h2 {
+    margin-top: 12px;
+    font-size: 2.35rem;
+  }
+
+  .availability {
+    margin-top: 12px;
+    font-size: 1.05rem;
+  }
+
+  .appstore-badge {
+    margin-top: 12px;
+  }
+
+  .appstore-badge img {
+    height: 44px;
+  }
+
+  .bottom-banner {
+    width: min(900px, 90%, max(380px, calc((100vh - 310px) * 1.9608)));
   }
 }
 
 @media (max-width: 900px) {
   .stage {
-    padding: 16px;
+    height: 100vmax;
+    padding: 24px;
   }
 
   .hero-card {
-    width: calc(100vw - 32px);
-    min-height: calc(100dvh - 32px);
+    width: calc(100vw - 48px);
+    height: calc(100vmax + 120px);
     border-radius: 28px;
+    display: flex;
+    flex-direction: column;
   }
 
   .site-menu {
-    top: 18px;
-    right: 18px;
+    top: 44px;
+    right: 48px;
+    z-index: 30;
+  }
+
+  .menu-panel {
+    position: absolute;
   }
 
   .menu-toggle {
@@ -228,44 +295,199 @@ body {
   }
 
   .hero-copy {
-    padding-top: 102px;
+    max-width: 520px;
+    padding: max(64px, calc(env(safe-area-inset-top) + 54px)) 24px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 
   .hero-copy h1 {
-    font-size: clamp(2.5rem, 10vw, 3.75rem);
+    font-size: 3.8rem;
   }
 
   .hero-copy h2 {
-    font-size: clamp(1.55rem, 6.2vw, 2.4rem);
+    max-width: 11.5em;
+    margin-top: 16px;
+    font-size: 1.8rem;
+    line-height: 1.18;
   }
 
-  .coming-strip {
-    top: calc(clamp(220px, 43%, 360px) - 78px);
-    width: 122vw;
-    margin-left: -61vw;
-    height: clamp(32px, 6vw, 46px);
-    transform: rotate(-4.6deg);
+  .availability {
+    margin-top: 12px;
+    max-width: 31ch;
+    font-size: 1rem;
   }
 
-  .coming-strip p {
-    font-size: clamp(0.9rem, 3.8vw, 1.35rem);
+  .appstore-badge {
+    margin-top: 10px;
+  }
+
+  .appstore-badge img {
+    height: 44px;
+  }
+
+  .mobile-showcase {
+    position: fixed;
+    left: 50%;
+    bottom: 0;
+    transform: translateX(-50%);
+    z-index: 20;
+    display: block;
+    width: min(430px, 78vw, calc((100vmax - 318px) * 0.6414));
+    aspect-ratio: 483 / 753;
+    margin: 0;
+    filter: drop-shadow(0 -16px 24px rgba(34, 76, 21, 0.22));
+  }
+
+  .mobile-screen {
+    position: absolute;
+    inset: 0;
+    display: block;
+    width: 100%;
+    height: auto;
+    opacity: 0;
+    animation: mobileScreenFade 15s infinite;
+  }
+
+  .mobile-screen-two {
+    animation-delay: 5s;
+  }
+
+  .mobile-screen-three {
+    animation-delay: 10s;
   }
 
   .bottom-banner {
-    width: min(1200px, 96%);
+    display: none;
   }
 }
 
 @media (max-width: 520px) {
-  .hero-copy {
-    padding-left: 14px;
-    padding-right: 14px;
+  .stage {
+    padding: 22px;
   }
 
-  .coming-strip {
-    top: calc(clamp(200px, 41%, 316px) - 78px);
-    width: 132vw;
-    margin-left: -66vw;
-    transform: rotate(-4.4deg);
+  .hero-card {
+    width: calc(100vw - 44px);
+    height: calc(100vmax + 120px);
+    border-radius: 26px;
+  }
+
+  .hero-copy {
+    max-width: 360px;
+    padding-top: max(66px, calc(env(safe-area-inset-top) + 56px));
+    padding-left: 18px;
+    padding-right: 18px;
+  }
+
+  .hero-copy h1 {
+    font-size: 3.2rem;
+  }
+
+  .hero-copy h2 {
+    margin-top: 12px;
+    font-size: 1.34rem;
+  }
+
+  .availability {
+    margin-top: 10px;
+    max-width: 29ch;
+    font-size: 0.88rem;
+  }
+
+  .mobile-showcase {
+    width: min(390px, 80vw, calc((100vmax - 304px) * 0.6414));
+  }
+}
+
+@media (max-width: 420px) {
+  .stage {
+    padding: 18px;
+  }
+
+  .hero-card {
+    width: calc(100vw - 36px);
+    height: calc(100vmax + 120px);
+    border-radius: 24px;
+  }
+
+  .site-menu {
+    top: 36px;
+    right: 42px;
+  }
+
+  .menu-panel {
+    top: calc(100% + 10px);
+    right: 0;
+  }
+
+  .hero-copy {
+    padding-top: max(62px, calc(env(safe-area-inset-top) + 52px));
+  }
+
+  .hero-copy h1 {
+    font-size: 2.8rem;
+  }
+
+  .hero-copy h2 {
+    margin-top: 10px;
+    font-size: 1.16rem;
+  }
+
+  .appstore-badge img {
+    height: 36px;
+  }
+
+  .mobile-showcase {
+    width: min(360px, 80vw, calc((100vmax - 292px) * 0.6414));
+  }
+
+  .bottom-banner {
+    display: none;
+  }
+}
+
+@media (max-height: 720px) and (max-width: 900px) {
+  .hero-copy {
+    padding-top: max(56px, calc(env(safe-area-inset-top) + 48px));
+  }
+
+  .hero-copy h1 {
+    font-size: 2.75rem;
+  }
+
+  .hero-copy h2 {
+    margin-top: 10px;
+    font-size: 1.18rem;
+  }
+
+  .availability {
+    margin-top: 10px;
+    font-size: 0.86rem;
+  }
+
+  .appstore-badge {
+    margin-top: 10px;
+  }
+
+  .appstore-badge img {
+    height: 34px;
+  }
+
+  .mobile-showcase {
+    width: min(320px, 72vw, calc((100vmax - 260px) * 0.6414));
+  }
+}
+
+@keyframes mobileScreenFade {
+  0%,
+  30% {
+    opacity: 1;
+  }
+
+  36%,
+  100% {
+    opacity: 0;
   }
 }
